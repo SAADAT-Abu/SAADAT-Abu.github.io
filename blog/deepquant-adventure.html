@@ -28,12 +28,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Abu Saadat">
-  <meta property="og:description" content="Turning data into discoveries.">
-  <meta property="og:image" content="Abu-Saadat.png">
+  <meta property="og:title" content="Building DeepQuant: My Adventure with Transformers and RNA-seq">
+  <meta property="og:description" content="So I decided to dive headfirst into the world of transformers and RNA-seq data. What could go wrong, right?">
+  <meta property="og:image" content="https://i1.rgstatic.net/ii/profile.image/887697501593600-1588654985001_Q512/Abu-Saadat.jpg">
 
-  <title>Abu Saadat</title>
-  <meta name="description" content="Turning data into discoveries.">
+  <title>Building DeepQuant: My Adventure with Transformers and RNA-seq</title>
+  <meta name="description" content="So I decided to dive headfirst into the world of transformers and RNA-seq data. What could go wrong, right?">
 
   <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico">
 
@@ -71,37 +71,42 @@
 
       <a class="nav-item nav-link " href="/publications/">Publications</a>
 
-      <a class="nav-item nav-link " href="/blog/">Blog</a>
+      <a class="nav-item nav-link active" href="/blog/">Blog</a>
 
       <a class="nav-item nav-link " href="/about/">About</a>
 
       <a class="nav-item nav-link " href="https://github.com/SAADAT-Abu/SAADAT-Abu.github.io"><i class="fab fa-1x fa-github"></i></a>
-
-      
 
       <span id="theme-toggler" class="nav-item nav-link" role="button" onclick="toggleTheme()"></span>
     </div>
   </div>
 
 </nav>
-    <div class="row justify-content-center align-items-center p-4">
-  <div class="col-lg-4 col-md-6 text-center mt-4">
+    <div class="col-lg-10 mx-auto mt-5 markdown-body">
+  
+  <h1><b>Building DeepQuant: My Adventure with Transformers and RNA-seq</b></h1>
 
-    <!-- Fine Circle Responsive Image -->
-    <div id="container" class="my-2">
-      <div id="dummy"></div>
-      <div id="element">
-        <img src="Abu-Saadat.png" alt="Abu Saadat" class="circle-image wow animated zoomIn" data-wow-delay=".1s" />
-      </div>
-    </div>
+  <p class="post-metadata text-muted">
+    August 25, 2025
+  </p>
 
-    <p class="text-muted wow animated slideInUp" data-wow-delay=".15s">Turning data into discoveries.</p>
+  <p>So, I had one of those classic 2 AM ideas: "What if I used a transformer to quantify RNA-seq data?" What could possibly go wrong? Thus, <strong>DeepQuant</strong> was born—a project that has become both my passion and the bane of my debugging existence.</p>
 
-  </div>
+  <p>I got started on this because, frankly, I was getting tired of the old-school ways of handling RNA-seq data. Traditional alignment-based tools like STAR are fantastic, but they often stumble when a read could plausibly map to multiple places. Think of reads from genes with tons of different isoforms or from gene families that look nearly identical. The aligner often just shrugs and assigns the read to multiple locations or picks one semi-randomly, which can really muddy the waters when you're trying to get accurate expression counts. Even the faster, alignment-free tools like Salmon, which are super clever, rely on k-mers and can sometimes get confused by repetitive sequences or complex transcript structures, leading to less precise assignments.</p>
+
+  <p>This is where I thought DeepQuant could shine. My "magic sauce" is a hierarchical approach that tries to be a bit smarter about where reads come from. Instead of just mapping a sequence, it first uses a transformer model—specifically, DNABERT-2 to figure out the broader <strong>gene family</strong>. Once it has that context, it drills down to pinpoint the <strong>exact isoform</strong>. It’s like a detective who first identifies the neighborhood before trying to find the specific house address.</p>
+
+  <p>Now for the reality check: while I still believe this idea has legs, getting it to work has been a struggle. Right now, I think the bottleneck is my <strong>read assignment logic</strong>. The model is great at understanding the sequence context, but translating that understanding into a confident, unambiguous assignment to a single transcript is proving to be a serious challenge. It’s one thing for the model to say, "I'm pretty sure this read belongs to the <em>Globin</em> family," but it's another for it to definitively say, "...and it's from the <em>HBB</em> gene, isoform variant 2." I spend most of my days tweaking algorithms and staring at output logs, convinced I’m just one small logical fix away from a breakthrough.</p>
+
+  <p>Despite the hurdles, DeepQuant is alive and kicking on <a href="https://github.com/SAADAT-Abu/DeepQuant" target="_blank" class="text-blue-600 hover:text-blue-800 font-semibold underline">GitHub</a>. It even has some cool features I'm proud of, like uncertainty-aware assignments that tell you <em>how confident</em> the model is in its guess.</p>
+
+  <p>Be warned, though: the entire thing is currently held together by Python scripts, a mountain of caffeine, and a fragile hope that my logic will eventually work. But that’s the fun of it, right? It's messy, it's experimental, and it’s how we push things forward. If you're feeling adventurous, I'd love for you to check it out.</p>
+
+
 </div>
 
   </main>
- <footer class="mt-auto py-3 text-center">
+  <footer class="mt-auto py-3 text-center">
 
   <small class="text-muted mb-2">
     <i class="fas fa-code"></i> with <i class="fas fa-heart"></i>
@@ -136,7 +141,7 @@
 
 </footer>
 
-
+  
   <!-- GitHub Buttons -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
 
@@ -160,6 +165,5 @@ $(function () {
 })
 </script>
 </body>
-
 
 </html>
